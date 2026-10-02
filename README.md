@@ -53,13 +53,42 @@ Thêm CSS cho từ đang đọc:
 }
 ```
 
+## Tự chọn giọng tốt nhất (mặc định bật)
+
+Trình duyệt thường có **cả giọng cục bộ** (cài sẵn hệ điều hành, hay nghe "robot") **và
+giọng mạng** (tải từ Google/Microsoft khi có internet, tự nhiên hơn nhiều — vd "Google
+Tiếng Việt", "Microsoft HoaiMy Online (Natural)"). Nếu chỉ đặt `utter.lang = 'vi-VN'` mà
+không chọn `voice` cụ thể, trình duyệt tự lấy giọng ĐẦU TIÊN khớp ngôn ngữ — có thể là
+giọng robot dù máy có giọng hay hơn.
+
+Từ bản này, `docVaToSang()` **mặc định tự dò và chọn giọng tốt nhất** (ưu tiên đúng vùng
+miền, rồi ưu tiên giọng mạng). Tắt bằng `tuChonGiongTotNhat: false` nếu muốn hành vi cũ.
+Dùng riêng hàm chọn giọng (vd để hiện danh sách cho người dùng chọn tay):
+
+```js
+import { chonGiongTotNhat } from "doc-to-sang-highlight";
+
+const giong = chonGiongTotNhat("vi-VN"); // null nếu trình duyệt chưa nạp xong danh sách giọng
+```
+
+⛔ **Số giọng thấy được tuỳ máy người dùng** — không đo được từ trình duyệt tự động hoá
+(Playwright/headless thường chặn dịch vụ giọng mạng, báo 0 giọng dù người dùng thật thấy
+nhiều). Phải tự mở trình duyệt thật, có mạng, để thấy đúng số giọng thật.
+
 ## Giới hạn đã biết
 
 - Độ hỗ trợ sự kiện `boundary` (báo đúng từng từ) khác nhau giữa trình duyệt
   và giọng đọc hệ thống — Chrome/Edge thường ổn cho tiếng Việt; Safari/Firefox
   có thể không tô sáng mượt dù giọng đọc vẫn chạy bình thường.
 - Chất lượng giọng tiếng Việt phụ thuộc giọng cài sẵn của hệ điều hành/trình
-  duyệt người dùng — gói này không mang theo giọng đọc riêng.
+  duyệt người dùng — gói này không mang theo giọng đọc riêng, chỉ chọn giọng
+  tốt nhất trong số giọng đã có sẵn.
+
+## Phép thử
+
+```bash
+node test.mjs
+```
 
 ## Giấy phép
 
