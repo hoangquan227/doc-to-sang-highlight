@@ -1,0 +1,9 @@
+{
+  "name": "doc-to-sang-highlight",
+  "version": "1.0.0",
+  "description": "Doc van ban thanh giong noi bang Web Speech API (mien phi, co san trinh duyet), to sang tung tu dang doc, tu goi callback khi doc xong.",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": ["text-to-speech", "speech-synthesis", "read-along", "highlight", "tts"]
+}
